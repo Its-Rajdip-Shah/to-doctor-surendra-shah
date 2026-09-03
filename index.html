@@ -110,12 +110,14 @@ button { cursor:pointer; }
   position:absolute;
   inset:0;
   width:100%; height:100%;
+  z-index:2;
   pointer-events:none;
 }
 
 .hero-overlay {
   position:absolute;
   inset:0;
+  z-index:1;
   background:radial-gradient(ellipse 60% 50% at 50% 50%, transparent 30%, rgba(7,3,10,.85) 100%);
   pointer-events:none;
 }
@@ -164,7 +166,7 @@ button { cursor:pointer; }
   font-weight:300;
   font-style:italic;
   color:rgba(244,237,230,.6);
-  max-width:480px;
+  max-width:720px;
   line-height:1.8;
   opacity:0;
   animation: fadeInUp .9s var(--ease-out-expo) .8s forwards;
@@ -1224,15 +1226,6 @@ button { cursor:pointer; }
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <div class="nav-logo">D<span>.</span></div>
-    <ul class="nav-links">
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#letter">Letter</a></li>
-    </ul>
-  </nav>
-
   <!-- ══ HERO ══════════════════════════════════════════════════════════ -->
   <section class="hero" id="hero">
     <canvas id="heartCanvas" width="320" height="810"></canvas>
@@ -1244,56 +1237,12 @@ button { cursor:pointer; }
       <p class="hero-tagline">
         For the man who gave me everything — his time, his heart, his world.
       </p>
-      <a href="#letter" class="hero-cta">
+      <a href="#" class="hero-cta" onclick="openLetterModal(); return false;">
         Read My Letter <span class="cta-arrow">↓</span>
       </a>
     </div>
     <div class="hero-scroll-line"></div>
   </section>
-
-  <!-- ══ LETTER INVITATION ════════════════════════════════════════════ -->
-  <section class="letter-section" id="letter">
-    <div class="letter-bg-text" aria-hidden="true">Dad</div>
-
-    <div class="letter-invite reveal visible">
-      <div class="invite-deco">
-        <span class="invite-rose">🌹</span>
-        <span class="invite-rule"></span>
-        <span class="invite-rose">🌹</span>
-      </div>
-
-      <p class="invite-eyebrow">I wrote you something</p>
-      <h2 class="invite-heading">A Letter From<br><em>the Heart</em></h2>
-      <p class="invite-sub">
-        There are words I have wanted to say for a very long time.<br>
-        They are all in here, waiting just for you.
-      </p>
-
-      <!-- envelope visual -->
-      <div class="invite-envelope" onclick="openLetterModal()">
-        <div class="env-flap-top"></div>
-        <div class="env-body-inner">
-          <div class="env-seal"><span>♥</span></div>
-        </div>
-        <div class="env-shine"></div>
-      </div>
-
-      <button class="invite-btn" onclick="openLetterModal()">
-        Open My Letter
-      </button>
-    </div>
-  </section>
-
-  <!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
-  <footer class="footer" id="footer">
-    <div class="footer-glow"></div>
-    <div class="footer-inner">
-      <p class="footer-script">Happy Father's Day</p>
-      <div class="footer-divider"><span>♥</span></div>
-      <p class="footer-message">You are, and will always be, my greatest hero and my truest home.</p>
-      <p class="footer-credit">Made with love — for the one who deserves the world.</p>
-    </div>
-  </footer>
 
   <!-- ══ LETTER MODAL ══════════════════════════════════════════════════ -->
   <div class="lm-overlay" id="letterModal" onclick="handleOverlayClick(event)">
@@ -1346,14 +1295,6 @@ button { cursor:pointer; }
 "use strict";
 
 /* ══════════════════════════════════════════════════════════════════
-   NAV — scroll behaviour
-══════════════════════════════════════════════════════════════════ */
-const nav = document.getElementById("nav");
-window.addEventListener("scroll", () => {
-  nav.classList.toggle("scrolled", window.scrollY > 60);
-}, { passive: true });
-
-/* ══════════════════════════════════════════════════════════════════
    SCROLL REVEAL
 ══════════════════════════════════════════════════════════════════ */
 const revealObserver = new IntersectionObserver(
@@ -1384,6 +1325,23 @@ document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
   }
   resize();
   window.addEventListener("resize", resize, { passive: true });
+
+  /* ─ smoothly follow the cursor ─ */
+  let heartX = W / 2;
+  let heartY = H / 2;
+  let targetHeartX = heartX;
+  let targetHeartY = heartY;
+
+  window.addEventListener("pointermove", (event) => {
+    if (event.pointerType === "touch") return;
+    targetHeartX = event.clientX;
+    targetHeartY = event.clientY;
+  }, { passive: true });
+
+  document.documentElement.addEventListener("mouseleave", () => {
+    targetHeartX = W / 2;
+    targetHeartY = H / 2;
+  });
 
   /* ─ parametric heart ─ */
   function heartPoint(t) {
@@ -1452,14 +1410,16 @@ document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
   /* ─ loop ─ */
   function loop() {
     const sc = getScale();
-    const cx = W / 2, cy = H / 2;
+    heartX += (targetHeartX - heartX) * 0.075;
+    heartY += (targetHeartY - heartY) * 0.075;
+    const cx = heartX, cy = heartY;
 
     // targets
     const targets = outlines.map(o => ({ tx: o.ox * sc + cx, ty: o.oy * sc + cy }));
 
-    // dark trail fade
-    ctx.fillStyle = "rgba(7,3,10,0.14)";
-    ctx.fillRect(0, 0, W, H);
+    // Keep the canvas transparent so the hero background remains visible.
+    // Particle trails are stored and redrawn below on every frame.
+    ctx.clearRect(0, 0, W, H);
 
     particles.forEach(p => {
       const tg = targets[p.target];
