@@ -705,6 +705,51 @@ button { cursor:pointer; }
   to   { transform: translateY(0); }
 }
 
+/* horizontal photo strips used when side rails do not fit */
+.lm-mobile-photo {
+  display: none;
+  width: 100%;
+  height: clamp(88px, 14dvh, 124px);
+  flex: 0 0 clamp(88px, 14dvh, 124px);
+  overflow: hidden;
+  border-radius: 14px;
+  opacity: 0;
+  mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+  transition: opacity .7s ease .2s;
+}
+.lm-overlay.active .lm-mobile-photo { opacity: .92; }
+.lm-mobile-photo-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  height: 100%;
+  will-change: transform;
+  animation: lm-scroll-left 34s linear infinite;
+  animation-play-state: paused;
+}
+.lm-overlay.active .lm-mobile-photo-track { animation-play-state: running; }
+.lm-mobile-photo--bottom .lm-mobile-photo-track {
+  animation-name: lm-scroll-right;
+  animation-duration: 30s;
+}
+.lm-mobile-photo-track img {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: 100%;
+  object-fit: contain;
+  flex: none;
+}
+@keyframes lm-scroll-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes lm-scroll-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
 /* the paper itself */
 .lm-paper {
   position: relative;
@@ -1250,8 +1295,21 @@ button { cursor:pointer; }
   .nav.scrolled { padding:14px 28px; }
   .nav-links { gap:20px; }
 
+  .lm-overlay {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 12px;
+  }
   .lm-photo-rail { display: none; }
-  .lm-paper { width: 100%; margin: 0 8px; }
+  .lm-mobile-photo { display: block; }
+  .lm-paper {
+    width: 100%;
+    min-height: 0;
+    max-height: none;
+    height: fit-content;
+    flex: 0 1 auto;
+    margin: 0;
+  }
   .lm-letter { padding: 24px 32px 0; }
   .lm-signature { padding: 24px 32px 40px; }
   .lm-pen-cursor { left: 32px; }
@@ -1260,7 +1318,8 @@ button { cursor:pointer; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lm-photo-track { animation: none; }
+  .lm-photo-track,
+  .lm-mobile-photo-track { animation: none; }
 }
 
 @media (max-width:600px) {
@@ -1269,6 +1328,7 @@ button { cursor:pointer; }
   .env-flap-top { border-left-width: 80px; border-right-width: 80px; border-top-width: 56px; }
   .lm-letter { padding: 20px 24px 0; }
   .lm-signature { padding: 20px 24px 36px; }
+  .lm-top-deco { display:none; }
   .hw-line span { font-size: 1.15rem; }
   .lm-salutation span { font-size: 1.6rem; }
   .lm-pen-cursor { left: 24px; }
@@ -1298,10 +1358,17 @@ button { cursor:pointer; }
 
   <!-- ══ LETTER MODAL ══════════════════════════════════════════════════ -->
   <div class="lm-overlay" id="letterModal" onclick="handleOverlayClick(event)">
+    <div class="lm-mobile-photo lm-mobile-photo--top" aria-hidden="true">
+      <div class="lm-mobile-photo-track">
+        <img src="Images/horizontal top.png" alt="">
+        <img src="Images/horizontal top.png" alt="">
+      </div>
+    </div>
+
     <div class="lm-photo-rail lm-photo-rail--left" aria-hidden="true">
       <div class="lm-photo-track">
-        <img src="left.png" alt="">
-        <img src="left.png" alt="">
+        <img src="Images/left.png" alt="">
+        <img src="Images/left.png" alt="">
       </div>
     </div>
 
@@ -1348,8 +1415,15 @@ button { cursor:pointer; }
 
     <div class="lm-photo-rail lm-photo-rail--right" aria-hidden="true">
       <div class="lm-photo-track">
-        <img src="right.png" alt="">
-        <img src="right.png" alt="">
+        <img src="Images/right.png" alt="">
+        <img src="Images/right.png" alt="">
+      </div>
+    </div>
+
+    <div class="lm-mobile-photo lm-mobile-photo--bottom" aria-hidden="true">
+      <div class="lm-mobile-photo-track">
+        <img src="Images/horizontal bottom.png" alt="">
+        <img src="Images/horizontal bottom.png" alt="">
       </div>
     </div>
   </div>
