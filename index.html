@@ -1,0 +1,1796 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Father's Day — A Celebration of You</title>
+  <meta name="description" content="A luxurious heartfelt tribute to the most extraordinary man in the world. Happy Father's Day.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&amp;family=Inter:wght@300;400;500;600&amp;family=Great+Vibes&amp;family=Caveat:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+/* ═══════════════════════════════════════════════════════════════════
+   FATHER'S DAY 2026 — LUXURY REDESIGN
+   ═══════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&family=Great+Vibes&display=swap');
+
+/* ── TOKENS ─────────────────────────────────────────────────────── */
+:root {
+  /* Palette: deep wine · rose gold · ivory · blush */
+  --ink:       #0e0810;
+  --wine:      #1c0a18;
+  --plum:      #2a0e22;
+  --rose-gold: #c9846a;
+  --gold:      #d4a96a;
+  --blush:     #e8bdb0;
+  --ivory:     #f4ede6;
+  --white:     #fdfaf8;
+  --muted:     rgba(244,237,230,.45);
+  --line:      rgba(201,132,106,.25);
+
+  --ff-display: 'Cormorant Garamond', Georgia, serif;
+  --ff-script:  'Great Vibes', cursive;
+  --ff-body:    'Inter', system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16,1,0.3,1);
+}
+
+/* ── RESET ───────────────────────────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html   { scroll-behavior:smooth; font-size:16px; }
+body   { font-family:var(--ff-body); background:var(--ink); color:var(--ivory); overflow-x:hidden; }
+img    { display:block; max-width:100%; }
+button { cursor:pointer; }
+
+/* ── SCROLL REVEAL ───────────────────────────────────────────────── */
+.reveal {
+  opacity:0;
+  transform:translateY(36px);
+  transition: opacity .9s var(--ease-out-expo),
+              transform .9s var(--ease-out-expo);
+  transition-delay: var(--d, 0s);
+}
+.reveal.visible { opacity:1; transform:none; }
+
+/* ══════════════════════════════════════════════════════════════════
+   NAV
+══════════════════════════════════════════════════════════════════ */
+.nav {
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:900;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:22px 56px;
+  transition: background .5s, padding .5s;
+}
+.nav.scrolled {
+  background: rgba(14,8,16,.85);
+  backdrop-filter: blur(20px);
+  padding:16px 56px;
+  border-bottom: 1px solid var(--line);
+}
+.nav-logo {
+  font-family:var(--ff-display);
+  font-size:1.6rem;
+  font-weight:600;
+  color:var(--ivory);
+  letter-spacing:.06em;
+}
+.nav-logo span { color:var(--rose-gold); }
+.nav-links { display:flex; gap:36px; list-style:none; }
+.nav-links a {
+  font-family:var(--ff-body);
+  font-size:.8rem;
+  font-weight:500;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  text-decoration:none;
+  transition:color .3s;
+}
+.nav-links a:hover { color:var(--rose-gold); }
+
+/* ══════════════════════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════════════════════ */
+.hero {
+  position:relative;
+  width:100%;
+  height:100vh;
+  min-height:700px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:radial-gradient(ellipse 80% 60% at 50% 40%, #2e0e28 0%, #110610 55%, #07030a 100%);
+}
+
+#heartCanvas {
+  position:absolute;
+  inset:0;
+  width:100%; height:100%;
+  pointer-events:none;
+}
+
+.hero-overlay {
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 50%, transparent 30%, rgba(7,3,10,.85) 100%);
+  pointer-events:none;
+}
+
+.hero-content {
+  position:relative;
+  z-index:10;
+  text-align:center;
+  padding:0 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:28px;
+}
+
+.hero-eyebrow {
+  font-family:var(--ff-body);
+  font-size:.75rem;
+  font-weight:500;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--rose-gold);
+  opacity:0;
+  animation: fadeInDown .8s var(--ease-out-expo) .3s forwards;
+}
+
+.hero-headline {
+  font-family:var(--ff-display);
+  font-size:clamp(4rem, 10vw, 8.5rem);
+  font-weight:300;
+  line-height:1.0;
+  color:var(--ivory);
+  letter-spacing:-.01em;
+  opacity:0;
+  animation: fadeInUp 1s var(--ease-out-expo) .5s forwards;
+}
+.hero-headline em {
+  font-style:italic;
+  color:var(--rose-gold);
+  display:block;
+}
+
+.hero-tagline {
+  font-family:var(--ff-display);
+  font-size:clamp(1rem, 2vw, 1.25rem);
+  font-weight:300;
+  font-style:italic;
+  color:rgba(244,237,230,.6);
+  max-width:480px;
+  line-height:1.8;
+  opacity:0;
+  animation: fadeInUp .9s var(--ease-out-expo) .8s forwards;
+}
+
+.hero-cta {
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  font-family:var(--ff-body);
+  font-size:.78rem;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--ivory);
+  text-decoration:none;
+  padding:16px 40px;
+  border:1px solid rgba(201,132,106,.45);
+  border-radius:100px;
+  background:rgba(201,132,106,.08);
+  backdrop-filter:blur(10px);
+  transition:background .4s, border-color .4s, transform .4s;
+  opacity:0;
+  animation: fadeInUp .8s var(--ease-out-expo) 1.1s forwards;
+}
+.hero-cta:hover {
+  background:rgba(201,132,106,.18);
+  border-color:rgba(201,132,106,.8);
+  transform:translateY(-3px);
+}
+.cta-arrow {
+  font-size:1.1rem;
+  transition:transform .4s;
+  animation:arrowBob 2s ease infinite 2s;
+}
+@keyframes arrowBob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+
+.hero-scroll-line {
+  position:absolute;
+  bottom:0; left:50%;
+  transform:translateX(-50%);
+  width:1px;
+  height:80px;
+  background:linear-gradient(to bottom, transparent, var(--rose-gold));
+  animation: lineGrow 1.5s var(--ease-out-expo) 1.5s forwards;
+  transform-origin:top center;
+  scaleY:0;
+}
+@keyframes lineGrow { from{opacity:0;transform:translateX(-50%) scaleY(0)} to{opacity:1;transform:translateX(-50%) scaleY(1)} }
+
+/* ── KEYFRAMES ───────────────────────────────────────────────────── */
+@keyframes fadeInUp   { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+@keyframes fadeInDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:none} }
+
+/* ══════════════════════════════════════════════════════════════════
+   SHARED SECTION STYLES
+══════════════════════════════════════════════════════════════════ */
+.section-label {
+  font-family:var(--ff-body);
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--rose-gold);
+  margin-bottom:18px;
+  display:block;
+}
+
+.section-title {
+  font-family:var(--ff-display);
+  font-size:clamp(2.6rem, 5vw, 4rem);
+  font-weight:300;
+  color:var(--ivory);
+  line-height:1.15;
+  margin-bottom:16px;
+}
+.section-title em { font-style:italic; color:var(--rose-gold); }
+
+.section-sub {
+  font-family:var(--ff-display);
+  font-size:1.1rem;
+  font-weight:300;
+  font-style:italic;
+  color:var(--muted);
+  margin-bottom:60px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   TRIBUTE
+══════════════════════════════════════════════════════════════════ */
+.tribute {
+  background:var(--wine);
+  padding:120px 40px;
+  text-align:center;
+}
+
+.tribute-inner {
+  max-width:760px;
+  margin:0 auto 80px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:28px;
+}
+.tribute-rule {
+  display:block;
+  width:60px; height:1px;
+  background:var(--rose-gold);
+}
+.tribute-label {
+  font-family:var(--ff-body);
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--rose-gold);
+}
+.tribute-quote {
+  font-family:var(--ff-display);
+  font-size:clamp(1.5rem, 3.5vw, 2.2rem);
+  font-weight:300;
+  font-style:italic;
+  line-height:1.55;
+  color:var(--ivory);
+}
+
+/* stats */
+.stats-row {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  flex-wrap:wrap;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding:48px 40px;
+}
+.stat { text-align:center; padding:0 60px; }
+.stat-num {
+  font-family:var(--ff-display);
+  font-size:clamp(2.4rem, 5vw, 4rem);
+  font-weight:300;
+  color:var(--rose-gold);
+  letter-spacing:-.02em;
+  line-height:1;
+  margin-bottom:10px;
+}
+.stat-label {
+  font-family:var(--ff-body);
+  font-size:.78rem;
+  font-weight:400;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.stat-divider {
+  width:1px;
+  height:64px;
+  background:var(--line);
+  flex-shrink:0;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   REASONS
+══════════════════════════════════════════════════════════════════ */
+.reasons {
+  background:var(--ink);
+  padding:120px 60px;
+  max-width:1300px;
+  margin:0 auto;
+  text-align:left;
+}
+.reasons .section-label,
+.reasons .section-title { text-align:left; }
+.reasons .section-title  { margin-bottom:70px; }
+
+.reasons-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  border-top:1px solid var(--line);
+}
+
+.reason {
+  padding:48px 36px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  position:relative;
+  transition:background .4s;
+}
+.reason:nth-child(3n) { border-right:none; }
+.reason:nth-last-child(-n+3) { border-bottom:none; }
+
+.reason:hover { background:rgba(201,132,106,.04); }
+
+.reason-num {
+  font-family:var(--ff-display);
+  font-size:.85rem;
+  font-weight:300;
+  color:var(--rose-gold);
+  letter-spacing:.12em;
+  margin-bottom:20px;
+  opacity:.6;
+}
+.reason-icon {
+  font-size:1rem;
+  color:var(--rose-gold);
+  margin-bottom:20px;
+  display:block;
+  opacity:.6;
+  transition:opacity .3s;
+}
+.reason:hover .reason-icon { opacity:1; }
+
+.reason h3 {
+  font-family:var(--ff-display);
+  font-size:1.5rem;
+  font-weight:400;
+  color:var(--ivory);
+  margin-bottom:14px;
+  letter-spacing:.01em;
+}
+.reason p {
+  font-size:.9rem;
+  line-height:1.8;
+  color:rgba(244,237,230,.5);
+  font-weight:300;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MEMORIES TIMELINE
+══════════════════════════════════════════════════════════════════ */
+.memories {
+  background:linear-gradient(180deg, var(--ink) 0%, var(--plum) 100%);
+  padding:120px 60px;
+  overflow:hidden;
+}
+.memories-header { text-align:center; margin-bottom:80px; }
+
+.timeline {
+  position:relative;
+  max-width:900px;
+  margin:0 auto;
+}
+.timeline-line {
+  position:absolute;
+  left:50%; top:0; bottom:0;
+  width:1px;
+  background:var(--line);
+  transform:translateX(-50%);
+}
+
+.tl-item {
+  display:grid;
+  grid-template-columns:1fr 60px 1fr;
+  align-items:center;
+  margin-bottom:70px;
+}
+
+.tl-left  { direction:ltr; }
+.tl-right { direction:rtl; }
+.tl-right .tl-card { direction:ltr; }
+
+.tl-card {
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  border-radius:2px;
+  padding:36px 32px;
+  transition:background .4s, border-color .4s;
+}
+.tl-card:hover { background:rgba(201,132,106,.06); border-color:rgba(201,132,106,.35); }
+
+.tl-icon {
+  font-size:1.5rem;
+  margin-bottom:14px;
+}
+.tl-card h3 {
+  font-family:var(--ff-display);
+  font-size:1.35rem;
+  font-weight:400;
+  color:var(--ivory);
+  margin-bottom:10px;
+}
+.tl-card p {
+  font-size:.88rem;
+  line-height:1.85;
+  color:rgba(244,237,230,.5);
+  font-weight:300;
+}
+
+.tl-connector {
+  height:1px;
+  background:var(--line);
+}
+.tl-dot {
+  width:13px; height:13px;
+  border-radius:50%;
+  background:var(--rose-gold);
+  justify-self:center;
+  box-shadow:0 0 0 4px rgba(201,132,106,.15), 0 0 20px rgba(201,132,106,.3);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LETTER SECTION — INVITATION
+══════════════════════════════════════════════════════════════════ */
+.letter-section {
+  background: linear-gradient(160deg, var(--plum) 0%, #120820 50%, var(--wine) 100%);
+  padding: 140px 40px 160px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter-bg-text {
+  position: absolute;
+  font-family: var(--ff-script);
+  font-size: clamp(14rem, 35vw, 28rem);
+  color: rgba(201,132,106,.035);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.letter-invite {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* deco roses + rule */
+.invite-deco {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 220px;
+}
+.invite-rose { font-size: 1.4rem; }
+.invite-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+  display: block;
+}
+
+.invite-eyebrow {
+  font-family: var(--ff-body);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+}
+
+.invite-heading {
+  font-family: var(--ff-display);
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  font-weight: 300;
+  color: var(--ivory);
+  line-height: 1.15;
+}
+.invite-heading em { font-style: italic; color: var(--rose-gold); }
+
+.invite-sub {
+  font-family: var(--ff-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* ── envelope illustration ── */
+.invite-envelope {
+  position: relative;
+  width: 200px;
+  height: 140px;
+  cursor: pointer;
+  margin: 8px 0;
+  filter: drop-shadow(0 20px 50px rgba(0,0,0,.5));
+  transition: transform .4s var(--ease-out-expo), filter .4s;
+}
+.invite-envelope:hover {
+  transform: translateY(-8px) scale(1.04);
+  filter: drop-shadow(0 30px 70px rgba(0,0,0,.55)) drop-shadow(0 0 30px rgba(201,132,106,.2));
+}
+
+/* envelope body */
+.env-body-inner {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #3a1630 0%, #260c1e 100%);
+  border: 1px solid rgba(201,132,106,.35);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* envelope flap (triangle on top) */
+.env-flap-top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-top: 70px solid rgba(201,132,106,.22);
+  z-index: 2;
+  border-radius: 3px 3px 0 0;
+}
+
+/* wax seal */
+.env-seal {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #9c3040 0%, #7a1c2a 100%);
+  border: 2px solid rgba(255,255,255,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,.4), 0 0 0 4px rgba(156,48,64,.2);
+  animation: sealPulse 3s ease infinite;
+}
+@keyframes sealPulse {
+  0%,100% { box-shadow: 0 4px 16px rgba(0,0,0,.4), 0 0 0 4px rgba(156,48,64,.2); }
+  50%      { box-shadow: 0 4px 20px rgba(0,0,0,.5), 0 0 0 8px rgba(156,48,64,0); }
+}
+
+/* shine highlight */
+.env-shine {
+  position: absolute;
+  top: 6px; left: 10px;
+  width: 40px; height: 18px;
+  background: linear-gradient(135deg, rgba(255,255,255,.08), transparent);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* open button */
+.invite-btn {
+  padding: 16px 52px;
+  border: 1px solid rgba(201,132,106,.5);
+  border-radius: 100px;
+  background: rgba(201,132,106,.08);
+  color: var(--ivory);
+  font-family: var(--ff-body);
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  transition: background .4s, border-color .4s, transform .35s, box-shadow .4s;
+}
+.invite-btn:hover {
+  background: rgba(201,132,106,.18);
+  border-color: var(--rose-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(201,132,106,.18);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LETTER MODAL
+══════════════════════════════════════════════════════════════════ */
+.lm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(7,3,10,.88);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .5s ease;
+}
+.lm-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* the paper itself */
+.lm-paper {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  max-height: 88vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #fdf8f0;           /* warm ivory parchment */
+  border-radius: 2px;
+  box-shadow: 0 40px 120px rgba(0,0,0,.7),
+              0 0 0 1px rgba(201,132,106,.2);
+
+  /* horizontal ruled lines like paper */
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 36px,
+      rgba(201,132,106,.08) 36px,
+      rgba(201,132,106,.08) 37px
+    );
+  background-attachment: local;
+
+  /* entry animation */
+  transform: scale(.92) translateY(24px);
+  transition: transform .55s var(--ease-out-expo);
+}
+.lm-overlay.active .lm-paper {
+  transform: scale(1) translateY(0);
+}
+
+/* scrollbar styling */
+.lm-paper::-webkit-scrollbar { width: 5px; }
+.lm-paper::-webkit-scrollbar-track { background: transparent; }
+.lm-paper::-webkit-scrollbar-thumb { background: rgba(201,132,106,.3); border-radius: 4px; }
+
+/* top gradient accent */
+.lm-paper::before {
+  content: '';
+  position: sticky;
+  top: 0;
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #c9846a, #d4a96a, #c9846a);
+  margin-bottom: 0;
+}
+
+/* close button */
+.lm-close {
+  position: sticky;
+  top: 16px;
+  float: right;
+  margin: 12px 16px 0 0;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(42,14,34,.2);
+  background: rgba(42,14,34,.07);
+  color: #7a4860;
+  font-size: .9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .3s, transform .3s;
+  z-index: 10;
+}
+.lm-close:hover { background: rgba(42,14,34,.15); transform: scale(1.1); }
+
+/* top decoration (flowers + lines) */
+.lm-top-deco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 28px 40px 0;
+  clear: both;
+}
+.lm-flower { font-size: 1.8rem; }
+.lm-top-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  max-width: 200px;
+}
+.lm-top-lines div {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,132,106,.4), transparent);
+}
+
+/* date */
+.lm-date {
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #c9846a;
+  text-align: center;
+  padding: 14px 40px 0;
+}
+
+/* letter body container */
+.lm-letter {
+  padding: 28px 54px 0;
+}
+
+/* ── handwriting lines ── */
+.hw-line {
+  overflow: hidden;
+  margin: 0;
+  line-height: 1;
+}
+.hw-line span {
+  display: inline-block;
+  font-family: 'Caveat', cursive;
+  font-size: 1.55rem;
+  font-weight: 400;
+  color: #2c1020;
+  line-height: 1.7;
+
+  /* clipped — writing reveal */
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.75s cubic-bezier(0.22,1,0.36,1);
+}
+.hw-line.written span {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* salutation — larger */
+.lm-salutation span {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1c0a18;
+  margin-bottom: 4px;
+}
+
+/* emphasis line */
+.lm-emphasis span {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #9c2a3a;
+}
+
+/* closing line */
+.lm-closing span {
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: #7a1c2a;
+}
+
+/* spacers between paragraphs */
+.hw-spacer { height: 22px; }
+
+/* ── signature ── */
+.lm-signature {
+  padding: 28px 54px 48px;
+  border-top: 1px solid rgba(201,132,106,.18);
+  margin-top: 20px;
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.lm-signature.show {
+  opacity: 1;
+  transform: none;
+}
+
+.lm-sign-text {
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: #7a4860;
+  margin-bottom: 4px;
+}
+.lm-sign-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.8rem;
+  color: #2a0e22;
+  line-height: 1.2;
+}
+
+/* ── pen cursor ── */
+.lm-pen-cursor {
+  position: absolute;
+  font-size: 1.6rem;
+  pointer-events: none;
+  left: 54px;
+  top: 160px;
+  transition: top .3s ease, left .3s ease, opacity .3s;
+  opacity: 0;
+  z-index: 20;
+  transform: scaleX(-1);    /* flip pen to point right */
+}
+.lm-pen-cursor.visible { opacity: 1; }
+.lm-pen-cursor.done    { opacity: 0; }
+.letter-section {
+  background: linear-gradient(160deg, var(--plum) 0%, #120820 50%, var(--wine) 100%);
+  padding: 140px 40px 160px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter-bg-text {
+  position: absolute;
+  font-family: var(--ff-script);
+  font-size: clamp(14rem, 35vw, 28rem);
+  color: rgba(201,132,106,.035);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* ── outer wrapper ── */
+.letter-outer {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ══ SEALED STATE ═══════════════════════════════════════════════ */
+.letter-sealed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  transition: opacity .6s var(--ease-out-expo), transform .6s var(--ease-out-expo);
+}
+.letter-sealed.hidden {
+  opacity: 0;
+  transform: scale(.94) translateY(-12px);
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+/* wax-seal ring */
+.seal-ring {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  border: 1.5px solid var(--rose-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: sealGlow 3s ease infinite;
+}
+.seal-ring::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,132,106,.3);
+}
+@keyframes sealGlow {
+  0%,100% { box-shadow: 0 0 0 0 rgba(201,132,106,.35); }
+  50%      { box-shadow: 0 0 0 14px rgba(201,132,106,0); }
+}
+
+.seal-heart {
+  font-size: 2rem;
+  color: var(--rose-gold);
+  line-height: 1;
+}
+
+.seal-heading {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--ivory);
+  letter-spacing: .01em;
+}
+.seal-heading em { font-style: italic; color: var(--rose-gold); }
+
+.seal-sub {
+  font-family: var(--ff-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 380px;
+  line-height: 1.7;
+}
+
+.seal-open-btn {
+  margin-top: 8px;
+  padding: 16px 48px;
+  border: 1px solid rgba(201,132,106,.5);
+  border-radius: 100px;
+  background: rgba(201,132,106,.08);
+  color: var(--ivory);
+  font-family: var(--ff-body);
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  transition: background .4s, border-color .4s, transform .35s, box-shadow .4s;
+}
+.seal-open-btn:hover {
+  background: rgba(201,132,106,.16);
+  border-color: var(--rose-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(201,132,106,.15);
+}
+
+/* ══ LETTER PAPER ════════════════════════════════════════════════ */
+.letter-paper {
+  background: var(--white);
+  border-radius: 1px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+
+  /* start folded — off-screen above */
+  opacity: 0;
+  transform: perspective(900px) rotateX(-12deg) translateY(-30px);
+  transform-origin: top center;
+  pointer-events: none;
+  transition: opacity .9s var(--ease-out-expo),
+              transform .9s var(--ease-out-expo);
+  box-shadow: 0 60px 120px rgba(0,0,0,.6),
+              0 0 0 1px rgba(201,132,106,.12);
+}
+.letter-paper.open {
+  opacity: 1;
+  transform: perspective(900px) rotateX(0deg) translateY(0);
+  pointer-events: auto;
+}
+
+/* top colour bar */
+.letter-paper::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--rose-gold), var(--gold), var(--rose-gold));
+}
+
+/* large watermark heart */
+.paper-wm {
+  position: absolute;
+  bottom: -20px; right: 24px;
+  font-size: 9rem;
+  color: rgba(201,132,106,.05);
+  font-family: serif;
+  pointer-events: none;
+  line-height: 1;
+  user-select: none;
+}
+
+/* paper top bar (date row) */
+.paper-top-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 44px 56px 28px;
+  border-bottom: 1px solid rgba(201,132,106,.12);
+}
+.paper-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,132,106,.3), transparent);
+  display: block;
+}
+.paper-date {
+  font-family: var(--ff-body);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+  white-space: nowrap;
+}
+
+/* salutation */
+.paper-salutation {
+  font-family: var(--ff-display);
+  font-size: 1.55rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #2a0e22;
+  padding: 36px 56px 0;
+  margin-bottom: 20px;
+}
+
+/* body paragraphs — staggered reveal */
+.paper-para {
+  font-family: var(--ff-display);
+  font-size: 1.08rem;
+  font-weight: 300;
+  line-height: 2.05;
+  color: #3d1f30;
+  padding: 0 56px;
+  margin-bottom: 18px;
+
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .7s ease, transform .7s ease;
+  transition-delay: calc(var(--pi) * 180ms + 500ms);
+}
+.letter-paper.open .paper-para {
+  opacity: 1;
+  transform: none;
+}
+
+/* footer */
+.paper-footer {
+  padding: 24px 56px 48px;
+  margin-top: 10px;
+  border-top: 1px solid rgba(201,132,106,.1);
+  
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .7s ease .95s, transform .7s ease .95s;
+}
+.letter-paper.open .paper-footer {
+  opacity: 1;
+  transform: none;
+}
+
+.paper-sign {
+  font-family: var(--ff-display);
+  font-size: .95rem;
+  font-style: italic;
+  color: #7a4860;
+  margin-bottom: 6px;
+}
+.paper-name {
+  font-family: var(--ff-script);
+  font-size: 2.2rem;
+  color: var(--plum);
+  line-height: 1.2;
+}
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════════════════════ */
+.footer {
+  background:var(--ink);
+  border-top:1px solid var(--line);
+  padding:100px 40px 60px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.footer-glow {
+  position:absolute;
+  top:-100px; left:50%;
+  transform:translateX(-50%);
+  width:500px; height:500px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(201,132,106,.12) 0%, transparent 70%);
+  pointer-events:none;
+}
+
+.footer-inner {
+  position:relative;
+  z-index:5;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+}
+
+.footer-script {
+  font-family:var(--ff-script);
+  font-size:clamp(3rem, 7vw, 5rem);
+  color:var(--rose-gold);
+  line-height:1;
+}
+
+.footer-year {
+  font-family:var(--ff-display);
+  font-size:clamp(4rem, 12vw, 9rem);
+  font-weight:300;
+  letter-spacing:-.04em;
+  line-height:.9;
+  color:var(--ivory);
+}
+
+.footer-divider {
+  display:flex;
+  align-items:center;
+  gap:20px;
+  width:200px;
+  margin:16px auto;
+  color:var(--rose-gold);
+  font-size:.85rem;
+}
+.footer-divider::before, .footer-divider::after {
+  content:'';
+  flex:1;
+  height:1px;
+  background:var(--line);
+}
+
+.footer-message {
+  font-family:var(--ff-display);
+  font-size:clamp(1rem, 2vw, 1.25rem);
+  font-weight:300;
+  font-style:italic;
+  color:rgba(244,237,230,.6);
+  max-width:500px;
+  line-height:1.75;
+}
+
+.footer-credit {
+  font-family:var(--ff-body);
+  font-size:.72rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:rgba(244,237,230,.25);
+  margin-top:16px;
+}
+
+/* ── CONFETTI ────────────────────────────────────────────────────── */
+#confettiCanvas {
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  width:100%; height:100%;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════════════ */
+@media (max-width:900px) {
+  .nav   { padding:20px 28px; }
+  .nav.scrolled { padding:14px 28px; }
+  .nav-links { gap:20px; }
+
+  .lm-paper { margin: 0 8px; }
+  .lm-letter { padding: 24px 32px 0; }
+  .lm-signature { padding: 24px 32px 40px; }
+  .lm-pen-cursor { left: 32px; }
+  .hw-line span { font-size: 1.3rem; }
+  .lm-salutation span { font-size: 1.8rem; }
+}
+
+@media (max-width:600px) {
+  .nav-links { display:none; }
+  .invite-envelope { width: 160px; height: 112px; }
+  .env-flap-top { border-left-width: 80px; border-right-width: 80px; border-top-width: 56px; }
+  .lm-letter { padding: 20px 24px 0; }
+  .lm-signature { padding: 20px 24px 36px; }
+  .hw-line span { font-size: 1.15rem; }
+  .lm-salutation span { font-size: 1.6rem; }
+  .lm-pen-cursor { left: 24px; }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-logo">D<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#letter">Letter</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ HERO ══════════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <canvas id="heartCanvas" width="320" height="810"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-headline">
+        <em>Happy</em><br>Father's Day
+      </h1>
+      <p class="hero-tagline">
+        For the man who gave me everything — his time, his heart, his world.
+      </p>
+      <a href="#letter" class="hero-cta">
+        Read My Letter <span class="cta-arrow">↓</span>
+      </a>
+    </div>
+    <div class="hero-scroll-line"></div>
+  </section>
+
+  <!-- ══ LETTER INVITATION ════════════════════════════════════════════ -->
+  <section class="letter-section" id="letter">
+    <div class="letter-bg-text" aria-hidden="true">Dad</div>
+
+    <div class="letter-invite reveal visible">
+      <div class="invite-deco">
+        <span class="invite-rose">🌹</span>
+        <span class="invite-rule"></span>
+        <span class="invite-rose">🌹</span>
+      </div>
+
+      <p class="invite-eyebrow">I wrote you something</p>
+      <h2 class="invite-heading">A Letter From<br><em>the Heart</em></h2>
+      <p class="invite-sub">
+        There are words I have wanted to say for a very long time.<br>
+        They are all in here, waiting just for you.
+      </p>
+
+      <!-- envelope visual -->
+      <div class="invite-envelope" onclick="openLetterModal()">
+        <div class="env-flap-top"></div>
+        <div class="env-body-inner">
+          <div class="env-seal"><span>♥</span></div>
+        </div>
+        <div class="env-shine"></div>
+      </div>
+
+      <button class="invite-btn" onclick="openLetterModal()">
+        Open My Letter
+      </button>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
+  <footer class="footer" id="footer">
+    <div class="footer-glow"></div>
+    <div class="footer-inner">
+      <p class="footer-script">Happy Father's Day</p>
+      <div class="footer-divider"><span>♥</span></div>
+      <p class="footer-message">You are, and will always be, my greatest hero and my truest home.</p>
+      <p class="footer-credit">Made with love — for the one who deserves the world.</p>
+    </div>
+  </footer>
+
+  <!-- ══ LETTER MODAL ══════════════════════════════════════════════════ -->
+  <div class="lm-overlay" id="letterModal" onclick="handleOverlayClick(event)">
+    <div class="lm-paper" id="lmPaper">
+      <!-- close -->
+      <button class="lm-close" onclick="closeLetterModal()" aria-label="Close">✕</button>
+
+      <!-- paper top decoration -->
+      <div class="lm-top-deco">
+        <span class="lm-flower">🌸</span>
+        <div class="lm-top-lines"><div></div><div></div></div>
+        <span class="lm-flower">🌸</span>
+      </div>
+
+
+
+      <!-- the handwritten letter -->
+      <div class="lm-letter" id="lmLetter">
+        <div class="hw-line lm-salutation" data-speed="700"><span>Dear Dad,</span></div>
+
+        <div class="hw-spacer"></div>
+
+        <div class="hw-line" data-speed="750"><span>You gave me roots — and then you gave me wings.</span></div>
+        <div class="hw-line" data-speed="700"><span>I carry you with me everywhere I go.</span></div>
+
+        <div class="hw-spacer"></div>
+
+        <div class="hw-line lm-emphasis" data-speed="820"><span>You are everything. You always have been.</span></div>
+
+        <div class="hw-spacer"></div>
+
+        <div class="hw-line lm-closing" data-speed="800"><span>Happy Father's Day, Dad.</span></div>
+      </div>
+
+      <!-- signature -->
+      <div class="lm-signature" id="lmSignature">
+        <p class="lm-sign-text">With all the love I have,</p>
+        <p class="lm-sign-name">Your Child 💕</p>
+      </div>
+
+      <!-- moving pen cursor -->
+      <div class="lm-pen-cursor" id="lmPenCursor">✍</div>
+    </div>
+  </div>
+
+  <!-- Confetti layer -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <script>
+"use strict";
+
+/* ══════════════════════════════════════════════════════════════════
+   NAV — scroll behaviour
+══════════════════════════════════════════════════════════════════ */
+const nav = document.getElementById("nav");
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 60);
+}, { passive: true });
+
+/* ══════════════════════════════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════════════════════════════ */
+const revealObserver = new IntersectionObserver(
+  (entries) => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("visible"); revealObserver.unobserve(e.target); }
+  }),
+  { threshold: 0.12 }
+);
+document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+/* ══════════════════════════════════════════════════════════════════
+   HERO — HEART PARTICLE CANVAS
+   Inspired by the provided animation, but completely rebuilt:
+   - Rose-gold / champagne colour palette
+   - Gradient trail via lineTo instead of fill pixels
+   - Three nested hearts that pulse at different phases
+   - Smooth soft-body physics
+══════════════════════════════════════════════════════════════════ */
+(function heartCanvas() {
+  const canvas = document.getElementById("heartCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  let W, H;
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener("resize", resize, { passive: true });
+
+  /* ─ parametric heart ─ */
+  function heartPoint(t) {
+    const x =  16 * Math.pow(Math.sin(t), 3);
+    const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+    return [x, y];
+  }
+
+  /* ─ build outline sets at 3 uniform scales ─
+     heartPoint x-range ≈ [-16, 16], y-range ≈ [-17, 17]
+     Using one uniform scale keeps the aspect ratio correct.      */
+  const outlines = [];
+  const STEP = 0.055;
+  [13, 9, 5.5].forEach(s => {
+    for (let t = 0; t < Math.PI * 2; t += STEP) {
+      const [x, y] = heartPoint(t);
+      outlines.push({ ox: x * s, oy: y * s });
+    }
+  });
+  const N = outlines.length;
+
+  /* ─ colour palette: gold, rose-gold, blush, champagne ─ */
+  const palette = [
+    "201,132,106",   // rose gold
+    "212,169,106",   // warm gold
+    "232,189,176",   // blush
+    "255,200,190",   // soft peach
+    "180,110,90",    // deeper rose
+  ];
+
+  /* ─ particles ─ */
+  const TRAIL = 30;
+  const isMobile = /android|iphone|ipad|ipod/i.test(navigator.userAgent);
+  const COUNT = isMobile ? Math.floor(N * 0.6) : N;
+
+  const particles = Array.from({ length: COUNT }, (_, i) => {
+    const rgb = palette[Math.floor(Math.random() * palette.length)];
+    return {
+      x: Math.random() * 1400 - 700,
+      y: Math.random() * 900 - 450,
+      vx: 0, vy: 0,
+      trail: [],
+      target: Math.floor(Math.random() * N),
+      dir: Math.random() < 0.5 ? 1 : -1,
+      speed: Math.random() * 1.8 + 2.2,
+      dampen: Math.random() * 0.12 + 0.82,
+      rgb,
+      size: Math.random() < 0.15 ? 2 : 1,
+    };
+  });
+
+  particles.forEach(p => {
+    for (let k = 0; k < TRAIL; k++) p.trail.push({ x: p.x, y: p.y });
+  });
+
+  /* ─ pulsing scale ─ */
+  let time = 0;
+  function getScale() {
+    const n = -Math.cos(time);
+    const scale = 0.88 + (1 + n) * 0.065;
+    const sinT = Math.sin(time);
+    time += (sinT < 0 ? 7 : n > 0.82 ? 0.15 : 1) * 0.011;
+    return scale;
+  }
+
+  /* ─ loop ─ */
+  function loop() {
+    const sc = getScale();
+    const cx = W / 2, cy = H / 2;
+
+    // targets
+    const targets = outlines.map(o => ({ tx: o.ox * sc + cx, ty: o.oy * sc + cy }));
+
+    // dark trail fade
+    ctx.fillStyle = "rgba(7,3,10,0.14)";
+    ctx.fillRect(0, 0, W, H);
+
+    particles.forEach(p => {
+      const tg = targets[p.target];
+      const dx = p.trail[0].x - tg.tx;
+      const dy = p.trail[0].y - tg.ty;
+      const dist = Math.hypot(dx, dy) || 0.001;
+
+      if (dist < 10) {
+        if (Math.random() > 0.96) {
+          p.target = Math.floor(Math.random() * N);
+        } else {
+          if (Math.random() > 0.985) p.dir *= -1;
+          p.target = ((p.target + p.dir) % N + N) % N;
+        }
+      }
+
+      p.vx += (-dx / dist) * p.speed;
+      p.vy += (-dy / dist) * p.speed;
+      p.trail[0].x += p.vx;
+      p.trail[0].y += p.vy;
+      p.vx *= p.dampen;
+      p.vy *= p.dampen;
+
+      // propagate trail
+      for (let k = 0; k < p.trail.length - 1; k++) {
+        const a = p.trail[k], b = p.trail[k + 1];
+        b.x += (a.x - b.x) * 0.36;
+        b.y += (a.y - b.y) * 0.36;
+      }
+
+      // draw trail as gradient line path
+      if (p.trail.length > 2) {
+        ctx.beginPath();
+        ctx.moveTo(p.trail[0].x, p.trail[0].y);
+        for (let k = 1; k < p.trail.length; k++) {
+          ctx.lineTo(p.trail[k].x, p.trail[k].y);
+        }
+        const grad = ctx.createLinearGradient(
+          p.trail[0].x, p.trail[0].y,
+          p.trail[p.trail.length - 1].x,
+          p.trail[p.trail.length - 1].y
+        );
+        grad.addColorStop(0,   `rgba(${p.rgb},0.75)`);
+        grad.addColorStop(0.4, `rgba(${p.rgb},0.3)`);
+        grad.addColorStop(1,   `rgba(${p.rgb},0)`);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = p.size;
+        ctx.lineCap = "round";
+        ctx.stroke();
+
+        // bright head dot
+        ctx.beginPath();
+        ctx.arc(p.trail[0].x, p.trail[0].y, p.size + 0.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.rgb},0.95)`;
+        ctx.fill();
+      }
+    });
+
+    requestAnimationFrame(loop);
+  }
+
+  loop();
+})();
+
+/* ══════════════════════════════════════════════════════════════════
+   ANIMATED COUNTERS
+══════════════════════════════════════════════════════════════════ */
+(function counters() {
+  const els = document.querySelectorAll(".stat-num");
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const end = parseInt(el.dataset.target, 10);
+      const dur = 2200;
+      const start = performance.now();
+
+      function tick(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 4);
+        const v = Math.round(eased * end);
+        el.textContent = v >= 1000 ? v.toLocaleString() + "+" : v;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  els.forEach(el => io.observe(el));
+})();
+
+/* ══════════════════════════════════════════════════════════════════
+   LETTER MODAL — handwritten animation
+══════════════════════════════════════════════════════════════════ */
+let letterAnimated = false;
+
+window.openLetterModal = function () {
+  const modal = document.getElementById("letterModal");
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+  launchConfetti(55);
+
+  // animate once
+  if (!letterAnimated) {
+    letterAnimated = true;
+    setTimeout(animateLetter, 600);
+  }
+};
+
+window.closeLetterModal = function () {
+  const modal = document.getElementById("letterModal");
+  modal.classList.remove("active");
+  document.body.style.overflow = "";
+};
+
+window.handleOverlayClick = function (e) {
+  if (e.target === document.getElementById("letterModal")) {
+    closeLetterModal();
+  }
+};
+
+function animateLetter() {
+  const lines  = Array.from(document.querySelectorAll("#lmLetter .hw-line"));
+  const pen    = document.getElementById("lmPenCursor");
+  const paper  = document.getElementById("lmPaper");
+  const sig    = document.getElementById("lmSignature");
+
+  pen.classList.add("visible");
+
+  let delay = 0;
+
+  lines.forEach((line, i) => {
+    const speed = parseInt(line.dataset.speed, 10) || 700;
+
+    setTimeout(() => {
+      // move pen to the right end of this line
+      const lineRect  = line.getBoundingClientRect();
+      const paperRect = paper.getBoundingClientRect();
+      const penTop    = lineRect.top  - paperRect.top + paper.scrollTop + lineRect.height * 0.5 - 12;
+      const penLeft   = Math.min(lineRect.right - paperRect.left + 4, paper.clientWidth - 40);
+      pen.style.top  = penTop  + "px";
+      pen.style.left = penLeft + "px";
+
+      // auto-scroll paper so current line stays visible
+      const scrollTarget = lineRect.top - paperRect.top + paper.scrollTop - 80;
+      paper.scrollTo({ top: scrollTarget, behavior: "smooth" });
+
+      // reveal the text
+      line.classList.add("written");
+    }, delay);
+
+    delay += speed + 120;
+  });
+
+  // show signature after all lines done
+  setTimeout(() => {
+    sig.classList.add("show");
+    pen.classList.add("done");
+
+    // scroll to bottom
+    paper.scrollTo({ top: paper.scrollHeight, behavior: "smooth" });
+  }, delay + 200);
+}
+
+
+
+/* ══════════════════════════════════════════════════════════════════
+   WISH CARDS
+══════════════════════════════════════════════════════════════════ */
+window.revealWish = function (card) {
+  if (card.classList.contains("opened")) return;
+  card.classList.add("opened");
+  const back = card.querySelector(".wish-back");
+  back.textContent = card.dataset.wish;
+  launchConfetti(45);
+};
+
+/* ══════════════════════════════════════════════════════════════════
+   QUOTE ROTATOR
+══════════════════════════════════════════════════════════════════ */
+const QUOTES = [
+  { q: "A father's love is the fuel that enables a normal human being to do the impossible.", a: "— Marion C. Garretty" },
+  { q: "Life doesn't come with a manual — it comes with a father.", a: "— Unknown" },
+  { q: "God could not be everywhere, and therefore he made fathers.", a: "— Rudyard Kipling" },
+  { q: "A father's arms are made of tenderness, and children sleep soundly in them.", a: "— Victor Hugo" },
+  { q: "Fathers hold their children's hands for a short while, but their hearts forever.", a: "— Unknown" },
+  { q: "The natural state of fatherhood is unselfishness.", a: "— Jessica Lange" },
+  { q: "A father is he who can take the place of all others, but whose place no one else can take.", a: "— Cardinal Mermillod" },
+];
+let qi = 0;
+
+window.nextQuote = function () {
+  qi = (qi + 1) % QUOTES.length;
+  const qEl = document.getElementById("quoteText");
+  const aEl = document.getElementById("quoteAuthor");
+  if (!qEl || !aEl) return;
+
+  qEl.style.opacity = "0"; qEl.style.transform = "translateY(12px)";
+  aEl.style.opacity = "0";
+  setTimeout(() => {
+    qEl.textContent = QUOTES[qi].q;
+    aEl.textContent = QUOTES[qi].a;
+    qEl.style.transition = "opacity .6s, transform .6s";
+    aEl.style.transition = "opacity .6s .1s";
+    qEl.style.opacity = "1"; qEl.style.transform = "none";
+    aEl.style.opacity = "1";
+  }, 350);
+};
+
+/* ══════════════════════════════════════════════════════════════════
+   QUOTE SECTION — SMALL FLOATING HEARTS (particle canvas)
+══════════════════════════════════════════════════════════════════ */
+(function quoteParticles() {
+  const canvas = document.getElementById("particleCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let W, H;
+  function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+  resize();
+  window.addEventListener("resize", resize, { passive: true });
+
+  const hearts = Array.from({ length: 18 }, () => ({
+    x: Math.random() * 1400,
+    y: Math.random() * 600 + 200,
+    vy: -(Math.random() * 0.35 + 0.15),
+    vx: (Math.random() - 0.5) * 0.25,
+    size: Math.random() * 10 + 5,
+    alpha: Math.random() * 0.12 + 0.04,
+    hue: Math.round(Math.random() * 30 + 340),
+  }));
+
+  function drawHeart(x, y, r, a, h) {
+    ctx.save();
+    ctx.globalAlpha = a;
+    ctx.fillStyle = `hsl(${h},70%,70%)`;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.bezierCurveTo(x, y - r * .35, x - r, y - r * .35, x - r, y);
+    ctx.bezierCurveTo(x - r, y + r * .5, x, y + r * .85, x, y + r * 1.1);
+    ctx.bezierCurveTo(x, y + r * .85, x + r, y + r * .5, x + r, y);
+    ctx.bezierCurveTo(x + r, y - r * .35, x, y - r * .35, x, y);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    hearts.forEach(h => {
+      h.y += h.vy; h.x += h.vx;
+      if (h.y < -40) { h.y = H + 40; h.x = Math.random() * W; }
+      drawHeart(h.x, h.y, h.size, h.alpha, h.hue);
+    });
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* ══════════════════════════════════════════════════════════════════
+   CONFETTI
+══════════════════════════════════════════════════════════════════ */
+(function initConfetti() {
+  let frame;
+  const COLORS = ["#c9846a","#d4a96a","#e8bdb0","#b46e5a","#f4ede6","#e8a070","#ffffff"];
+
+  window.launchConfetti = function (n = 80) {
+    const canvas = document.getElementById("confettiCanvas");
+    if (!canvas) return;
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext("2d");
+
+    const pieces = Array.from({ length: n }, () => {
+      const type = Math.random();
+      return {
+        x: Math.random() * canvas.width,
+        y: -16,
+        vx: (Math.random() - 0.5) * 5,
+        vy: Math.random() * 3.5 + 1.5,
+        rot: Math.random() * 360,
+        rotV: (Math.random() - 0.5) * 7,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        size: Math.random() * 7 + 4,
+        life: 1,
+        type: type < 0.35 ? "heart" : type < 0.6 ? "circle" : "rect",
+      };
+    });
+
+    cancelAnimationFrame(frame);
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let alive = 0;
+
+      pieces.forEach(p => {
+        p.x  += p.vx; p.y += p.vy; p.vy += 0.1;
+        p.rot += p.rotV; p.life -= 0.008;
+        if (p.life <= 0) return;
+        alive++;
+        ctx.save();
+        ctx.globalAlpha = Math.min(p.life, 1);
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot * Math.PI / 180);
+        ctx.fillStyle = p.color;
+
+        if (p.type === "heart") {
+          const r = p.size;
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.bezierCurveTo(0, -r*.35, -r, -r*.35, -r, 0);
+          ctx.bezierCurveTo(-r, r*.5, 0, r*.85, 0, r*1.1);
+          ctx.bezierCurveTo(0, r*.85, r, r*.5, r, 0);
+          ctx.bezierCurveTo(r, -r*.35, 0, -r*.35, 0, 0);
+          ctx.fill();
+        } else if (p.type === "circle") {
+          ctx.beginPath();
+          ctx.arc(0, 0, p.size * 0.6, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.fillRect(-p.size / 2, -p.size * 0.35, p.size, p.size * 0.5);
+        }
+        ctx.restore();
+      });
+
+      if (alive > 0) frame = requestAnimationFrame(draw);
+      else ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    draw();
+  };
+})();
+
+</script>
+
+
+</body></html>
