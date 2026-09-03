@@ -648,6 +648,7 @@ button { cursor:pointer; }
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: clamp(12px, 2vw, 28px);
   padding: 24px;
 
   opacity: 0;
@@ -659,10 +660,54 @@ button { cursor:pointer; }
   pointer-events: auto;
 }
 
+/* continuously scrolling photo rails beside the letter */
+.lm-photo-rail {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 360px;
+  height: 88vh;
+  overflow: hidden;
+  border-radius: 18px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease .2s, transform .7s var(--ease-out-expo) .2s;
+  mask-image: linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+}
+.lm-overlay.active .lm-photo-rail {
+  opacity: .9;
+  transform: translateY(0);
+}
+.lm-photo-track {
+  width: 100%;
+  will-change: transform;
+  animation: lm-scroll-up 30s linear infinite;
+  animation-play-state: paused;
+}
+.lm-overlay.active .lm-photo-track { animation-play-state: running; }
+.lm-photo-rail--right .lm-photo-track {
+  animation-name: lm-scroll-down;
+  animation-duration: 34s;
+}
+.lm-photo-track img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@keyframes lm-scroll-up {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+@keyframes lm-scroll-down {
+  from { transform: translateY(-50%); }
+  to   { transform: translateY(0); }
+}
+
 /* the paper itself */
 .lm-paper {
   position: relative;
-  width: 100%;
+  width: min(680px, 56vw);
+  flex: 0 1 680px;
   max-width: 680px;
   max-height: 88vh;
   overflow-y: auto;
@@ -1203,12 +1248,17 @@ button { cursor:pointer; }
   .nav.scrolled { padding:14px 28px; }
   .nav-links { gap:20px; }
 
-  .lm-paper { margin: 0 8px; }
+  .lm-photo-rail { display: none; }
+  .lm-paper { width: 100%; margin: 0 8px; }
   .lm-letter { padding: 24px 32px 0; }
   .lm-signature { padding: 24px 32px 40px; }
   .lm-pen-cursor { left: 32px; }
   .hw-line span { font-size: 1.3rem; }
   .lm-salutation span { font-size: 1.8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lm-photo-track { animation: none; }
 }
 
 @media (max-width:600px) {
@@ -1246,6 +1296,13 @@ button { cursor:pointer; }
 
   <!-- ══ LETTER MODAL ══════════════════════════════════════════════════ -->
   <div class="lm-overlay" id="letterModal" onclick="handleOverlayClick(event)">
+    <div class="lm-photo-rail lm-photo-rail--left" aria-hidden="true">
+      <div class="lm-photo-track">
+        <img src="left.png" alt="">
+        <img src="left.png" alt="">
+      </div>
+    </div>
+
     <div class="lm-paper" id="lmPaper">
       <!-- close -->
       <button class="lm-close" onclick="closeLetterModal()" aria-label="Close">✕</button>
@@ -1285,6 +1342,13 @@ button { cursor:pointer; }
 
       <!-- moving pen cursor -->
       <div class="lm-pen-cursor" id="lmPenCursor">✍</div>
+    </div>
+
+    <div class="lm-photo-rail lm-photo-rail--right" aria-hidden="true">
+      <div class="lm-photo-track">
+        <img src="right.png" alt="">
+        <img src="right.png" alt="">
+      </div>
     </div>
   </div>
 
